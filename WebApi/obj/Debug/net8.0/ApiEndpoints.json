@@ -307,6 +307,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApi.Controllers.CategoriesController",
+    "Method": "GetByCategoryWithProducts",
+    "RelativePath": "api/Categories/CategoryWithProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApi.Controllers.ContactsController",
     "Method": "GetList",
     "RelativePath": "api/Contacts",
@@ -750,6 +766,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi.Controllers.ProductsController",
+    "Method": "GetListByWithCategory",
+    "RelativePath": "api/Products/ProductsByWithCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

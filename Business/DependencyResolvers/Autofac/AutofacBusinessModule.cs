@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
+using AutoMapper;
 using Business.Abstract;
 using Business.Concrete;
+using Business.DependencyResolvers.Mappers;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
@@ -53,12 +55,15 @@ namespace Business.DependencyResolvers.Autofac
 
 
 
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
-                .EnableInterfaceInterceptors(new ProxyGenerationOptions()
+            builder.Register(c =>
+            {
+                var config = new MapperConfiguration(cfg =>
                 {
-                    Selector = new AspectInterceptorSelector()
-                }).SingleInstance();
+                    cfg.AddProfile(new MappingProfile());
+                });
+
+                return config.CreateMapper();
+            }).As<IMapper>().SingleInstance();
 
         }
     }

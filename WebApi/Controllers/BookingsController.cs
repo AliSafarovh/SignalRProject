@@ -27,15 +27,17 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetList()
         {
             var result = await _bookingsService.GetAllAsync();
-            return result.Success ? Ok(result) : NotFound();
+            var mappedResult = _mapper.Map<List<GetBookingDto>>(result.Data);
+            return result.Success ? Ok(mappedResult) : NotFound(result.Message);
         }
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var value = await _bookingsService.GetByIdAsync(id);
-            return value.Success ? Ok(value.Data) : NotFound(value.Message);
+            var result = await _bookingsService.GetByIdAsync(id);
+            var mappedResult = _mapper.Map<GetBookingDto>(result.Data);
+            return result.Success ? Ok(result.Data) : NotFound(result.Message);
         }
         [HttpPost]
         public async Task<IActionResult> CreateBooking([FromForm] CreateBookingDto createBookingDto)

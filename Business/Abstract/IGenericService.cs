@@ -15,6 +15,6 @@ namespace Business.Abstract
         Task<IResult> AddAsync(T entity);
         Task<IResult> UpdateAsync(T entity);
         Task<IResult> DeleteAsync(T entity);
+        
     }
-
 }

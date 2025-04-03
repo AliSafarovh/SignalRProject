@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.Constants;
+using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.DTOs.AboutDtos;
 using Entities.DTOs.ProductDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +24,20 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            var values = await _productService.GetAllAsync();
-            return values.Success ? Ok(values) : NotFound();
+            var result = await _productService.GetAllAsync();
+            var mappedResult = _mapper.Map<List<GetProductDto>>(result.Data);
+            return result.Success ? Ok(mappedResult) : NotFound();
+
         }
+
+        [HttpGet("ProductsByWithCategory")]
+        public async Task<IActionResult> GetListByWithCategory()
+        {
+            var result = await _productService.TGetProductwithCategory();
+            var mappedResult = _mapper.Map<List<ResultProductWithcategoryDto>>(result.Data);
+            return result.Success ? Ok(mappedResult) : NotFound(result.Message);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetListById(int id)
         {
@@ -32,7 +45,7 @@ namespace WebApi.Controllers
             return value.Success ? Ok(value) : NotFound(value.Message);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateProduct([FromForm] CreateProductDto creteProductDto)
+        public async Task<IActionResult> CreateProduct([FromForm]CreateProductDto creteProductDto)
         {
             var result = await _productService.AddAsync(_mapper.Map<Product>(creteProductDto));
             return result.Success ? Ok(result) : BadRequest();

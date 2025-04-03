@@ -23,15 +23,16 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            var values = await _discountService.GetAllAsync();
-            return values.Success ? Ok(values) : NotFound();
+            var result = await _discountService.GetAllAsync();
+            var mappedResult = _mapper.Map<List<GetDiscountDto>>(result.Data);
+            return result.Success ? Ok(mappedResult) : NotFound();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var value = await _discountService.GetByIdAsync(id);
-            return value.Success ? Ok(value.Data) : NotFound(value.Message);
+            var result = await _discountService.GetByIdAsync(id);
+            return result.Success ? Ok(_mapper.Map<GetByIdDiscountDto>(result.Data)) : NotFound(result.Message);
         }
         [HttpPost]
         public async Task<IActionResult> CreateDiscount([FromForm] CreateDiscountDto createDiscountDto)

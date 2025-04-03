@@ -300,18 +300,18 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Product", b =>
                 {
-                    b.HasOne("Entities.Concrete.Category", "category")
-                        .WithMany("products")
+                    b.HasOne("Entities.Concrete.Category", "Category")
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Category", b =>
                 {
-                    b.Navigation("products");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Feature", b =>

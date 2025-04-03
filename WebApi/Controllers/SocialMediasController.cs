@@ -23,15 +23,16 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            var values = await _socialMediaService.GetAllAsync();
-            return values.Success ? Ok(values) : NotFound();
+            var result = await _socialMediaService.GetAllAsync();
+            var mappedResult = _mapper.Map<List<GetSocialMediaDto>>(result.Data);
+            return result.Success ? Ok(result.Data) : NotFound(result.Message);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var value = await _socialMediaService.GetByIdAsync(id);
-            return value.Success ? Ok(value.Data) : NotFound(value.Message);
+            var result = await _socialMediaService.GetByIdAsync(id);
+            return result.Success ? Ok(_mapper.Map<GetByIdSocialMediaDto>(result.Data)) : NotFound(result.Message);
         }
         [HttpPost]
         public async Task<IActionResult> CreateSocialMediaService([FromForm] CreateSocialMediaDto createSocialMediaDto)

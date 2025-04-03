@@ -452,6 +452,28 @@
         }
       }
     },
+    "/api/Categories/CategoryWithProducts": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Contacts": {
       "get": {
         "tags": [
@@ -1079,6 +1101,18 @@
         }
       }
     },
+    "/api/Products/ProductsByWithCategory": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Products/{id}": {
       "get": {
         "tags": [
@@ -1488,6 +1522,10 @@
           },
           "productStatus": {
             "type": "boolean"
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
           },
           "category": {
             "$ref": "#/components/schemas/Category"

@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs.ProductDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,12 @@ namespace Business.Concrete
         {
             await _productDal.AddAsync(Tentity);
             return new SuccessResult(Messages.ProductAdded);
+        }
+
+        public async Task<IResult> AddRangeAsync(List<Product> products)
+        {
+           await _productDal.AddRangAsync(products);
+            return new SuccessDataResult<List<Product>>(Messages.ProductAdded);
         }
 
         public async Task<IResult> DeleteAsync(Product Tentity)
@@ -47,10 +54,18 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(result);
         }
 
+        public async Task<IDataResult<List<ResultProductWithcategoryDto>>> TGetProductwithCategory()
+        {
+            var result = await _productDal.GetAllProductsWithCategories();
+            return new SuccessDataResult<List<ResultProductWithcategoryDto>>(result);
+        }
+
         public async Task<IResult> UpdateAsync(Product Tentity)
         {
             await _productDal.UpdateAsync(Tentity);
             return new SuccessResult(Messages.ProductUpdated);
         }
+
+    
     }
 }

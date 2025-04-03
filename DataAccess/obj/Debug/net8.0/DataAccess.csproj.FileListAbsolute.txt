@@ -17,3 +17,4 @@ C:\Users\samun\Desktop\SignalRProject\DataAccess\bin\Debug\net8.0\Core.pdb
 C:\Users\samun\Desktop\SignalRProject\DataAccess\obj\Debug\net8.0\DataAccess.csproj.AssemblyReference.cache
 C:\Users\samun\Desktop\SignalRProject\DataAccess\obj\Debug\net8.0\DataAccess.csproj.Up2Date
 C:\Users\samun\Desktop\SignalRProject\DataAccess\obj\Debug\net8.0\DataAccess.genruntimeconfig.cache
+C:\Users\samun\Desktop\SignalRProject\DataAccess\obj\Debug\net8.0\DataAccess.sourcelink.json

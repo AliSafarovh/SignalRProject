@@ -22,58 +22,59 @@ namespace Business.DependencyResolvers.Mappers
         public MappingProfile()
         {
             // About mappings
-            CreateMap<About, CreateAboutDto>().ReverseMap();
             CreateMap<About, GetAboutDto>().ReverseMap();
+            CreateMap<About, GetByIdAboutDto>().ReverseMap();
+            CreateMap<About, CreateAboutDto>().ReverseMap();
             CreateMap<About, UpdateAboutDto>().ReverseMap();
-            CreateMap<SuccessDataResult<List<About>>, SuccessDataResult<List<GetAboutDto>>>()
-                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data));
+
 
             // Booking mappings
-            CreateMap<Booking, CreateBookingDto>().ReverseMap();
             CreateMap<Booking, GetBookingDto>().ReverseMap();
+            CreateMap<Booking, GetByIdBookingDto>().ReverseMap();
+            CreateMap<Booking, CreateBookingDto>().ReverseMap();
             CreateMap<Booking, UpdateBookingDto>().ReverseMap();
 
             // Category mappings
+
+            CreateMap<Category, GetCategoryDto>().ReverseMap();
+            CreateMap<Category, GetByIdCategoryDto>().ReverseMap();
+            CreateMap<Category, GetCategoryWithProductsDto>().ReverseMap();
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
-            CreateMap<Category, GetCategoryDto>().ReverseMap();
-            CreateMap<SuccessDataResult<List<Category>>, SuccessDataResult<List<GetCategoryDto>>>()
-                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data));
 
             // Contact mappings
+
+            CreateMap<Contact, GetContactDto>().ReverseMap();
+            CreateMap<Contact, GetByIdContactDto>().ReverseMap();
             CreateMap<Contact, CreateContactDto>().ReverseMap();
             CreateMap<Contact, UpdateContactDto>().ReverseMap();
-            CreateMap<Contact, GetContactDto>().ReverseMap();
-            CreateMap<SuccessDataResult<List<Contact>>, SuccessDataResult<List<GetContactDto>>>()
-                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data));
 
             // Discount mappings
+            CreateMap<Discount, GetDiscountDto>().ReverseMap();
+            CreateMap<Discount, GetByIdDiscountDto>().ReverseMap();
             CreateMap<Discount, CreateDiscountDto>().ReverseMap();
             CreateMap<Discount, UpdateDiscountDto>().ReverseMap();
-            CreateMap<Discount, GetDiscountDto>().ReverseMap();
-            CreateMap<SuccessDataResult<List<Discount>>, SuccessDataResult<List<GetDiscountDto>>>()
-                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data));
+
 
             // Product mappings
+            CreateMap<Product, GetProductDto>().ReverseMap();
+            CreateMap<Product, GetByIdProductDto>().ReverseMap();
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
-            CreateMap<Product, GetProductDto>().ReverseMap();
-            CreateMap<SuccessDataResult<List<Product>>, SuccessDataResult<List<GetProductDto>>>()
-                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data));
+            CreateMap<Product, ResultProductWithcategoryDto>().ReverseMap();
 
             // SocialMedia mappings
+            CreateMap<SocialMedia, GetSocialMediaDto>().ReverseMap();
+            CreateMap<SocialMedia, GetByIdSocialMediaDto>().ReverseMap();
             CreateMap<SocialMedia, CreateSocialMediaDto>().ReverseMap();
             CreateMap<SocialMedia, UpdateSocialMediaDto>().ReverseMap();
-            CreateMap<SocialMedia, GetSocialMediaDto>().ReverseMap();
-            CreateMap<SuccessDataResult<List<SocialMedia>>, SuccessDataResult<List<GetSocialMediaDto>>>()
-                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data));
 
             // Testimonial mappings
+            CreateMap<Testimonial, GetTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, GetByIdTestimonialDto>().ReverseMap();
             CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
             CreateMap<Testimonial, UpdateTestimonialDto>().ReverseMap();
-            CreateMap<Testimonial, GetTestimonialDto>().ReverseMap();
-            CreateMap<SuccessDataResult<List<Testimonial>>, SuccessDataResult<List<GetTestimonialDto>>>()
-                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data));
+
         }
     }
 }

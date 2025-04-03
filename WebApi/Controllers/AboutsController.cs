@@ -27,15 +27,15 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetList()
         {
             var result = await _aboutService.GetAllAsync();
-            var mappedData = _mapper.Map<List<GetAboutDto>>(result.Data);
-            return Ok(new SuccessDataResult<List<GetAboutDto>>(mappedData, "Success"));
+            var mappedResult = _mapper.Map<List<GetAboutDto>>(result.Data);
+            return result.Success ? Ok(mappedResult) : NotFound();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var value = await _aboutService.GetByIdAsync(id);
-            return value.Success ? Ok(value.Data) : NotFound(value.Message);
+            return value.Success ? Ok(_mapper.Map<GetByIdAboutDto>(value.Data)) : NotFound(value.Message);
         }
 
         [HttpPost]

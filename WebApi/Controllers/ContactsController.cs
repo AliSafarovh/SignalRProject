@@ -23,15 +23,16 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            var values = await _contactService.GetAllAsync();
-            return values.Success ? Ok(values) : NotFound();
+            var result = await _contactService.GetAllAsync();
+            var mappedResult=_mapper.Map<List<GetContactDto>>(result.Data);
+            return result.Success ? Ok(mappedResult) : NotFound();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var value = await _contactService.GetByIdAsync(id);
-            return value.Success ? Ok(value.Data) : NotFound(value.Message);
+            var result = await _contactService.GetByIdAsync(id);
+            return result.Success ? Ok(_mapper.Map<GetByIdContactDto>(result.Data)) : NotFound(result.Message);
         }
         [HttpPost]
         public async Task<IActionResult> CreateContact([FromForm] CreateContactDto createContactDto)

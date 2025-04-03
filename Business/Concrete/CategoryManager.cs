@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs.CategoryDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,13 @@ namespace Business.Concrete
                 return new ErrorDataResult<Category>(Messages.ProductNameNotFound);
             }
             return new SuccessDataResult<Category>(result);
+        }
+
+        public async Task<IDataResult<List<GetCategoryWithProductsDto>>> TGetCategoryWithProducts(int id)
+        {
+
+           var result=await _categoryDal.GetByIdCategoryWithProducts(id);
+            return new SuccessDataResult<List<GetCategoryWithProductsDto>>(result);
         }
 
         public async Task<IResult> UpdateAsync(Category entity)
