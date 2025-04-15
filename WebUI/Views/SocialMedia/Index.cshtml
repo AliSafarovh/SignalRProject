@@ -1,0 +1,68 @@
+﻿@model List<GetSocialMediaDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Haqqında Əməliyyatları</h4>
+		@if (TempData["SuccessMessage"] != null)
+		{
+			<div class="alert alert-success">
+				@TempData["SuccessMessage"]
+			</div>
+		}
+
+		@if (TempData["ErrorMessage"] != null)
+		{
+			<div class="alert alert-danger">
+				@TempData["ErrorMessage"]
+			</div>
+		}
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">SosialMedia Listi</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							SosialMedia ilə bağlı əməliyyatları aşağıdan görə bilərsiniz.
+						</div>
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Başlıq</th>
+									<th scope="col">URL</th>
+									<th scope="col">Icon</th>
+									<th scope="col">Yenile</th>
+									<th scope="col">Sil</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>@item.SocialMediaId</td>
+										<td>@item.Title</td>
+										<td>@item.Url</td>
+										<td>@item.Icon</td>
+										<td><a href="/SocialMedia/UpdateSocialMedia/@item.SocialMediaId" class="btn btn-outline-success">Yenilə</a></td>
+										<td><a href="/SocialMedia/DeleteSocialMedia/@item.SocialMediaId" class="btn btn-outline-danger">Sil</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						<a href="/SocialMedia/CreateSocialMedia/" class="btn btn-outline-primary">Yeni SosialMedia Əlavə Et</a>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+

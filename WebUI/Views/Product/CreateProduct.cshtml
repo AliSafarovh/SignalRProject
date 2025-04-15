@@ -1,0 +1,64 @@
+﻿@model CreateProductDto
+
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Məhsul əməliyyatları</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Məhsul Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="productname">Məhsul Adı</label>
+                                <input type="text" class="form-control" asp-for="ProductName" id="productname">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price">Məhsul Qiyməti</label>
+                                <input type="text" class="form-control" asp-for="Price" id="price">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="imageurl">Məhsul Şəkli</label>
+                                <input type="text" class="form-control" asp-for="ImageUrl" id="imageurl">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Məhsul Kateqoriyasını Seçin</label>
+                                @Html.DropDownListFor(x => x.CategoryId,
+                                         (List<SelectListItem>)ViewBag.CategoryValues,
+                                         new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Məhsul Haqqında</label>
+                                <input type="text" class="form-control" asp-for="Description" id="description">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" asp-for="Status" id="status">
+                                    <label class="custom-control-label" for="status">Aktiv</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-action">
+                            <button class="btn btn-success">Təsdiq Et</button>
+                            <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">İmtina Et</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

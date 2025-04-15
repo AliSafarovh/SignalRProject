@@ -1,0 +1,32 @@
+﻿@model UpdateFeatureDto
+@{
+    ViewData["Title"] = "UpdateFeature";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Önəçıxan əməliyyatları</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Önəçıxan Yeniləmə Səhifəsi</div>
+                        </div>
+                        <div class="card-body">
+                            <input type="hidden" asp-for="FeatureId" />
+                            <div class="form-group">
+                                <label for="name">Ad</label>
+                                <input type="text" class="form-control" asp-for="FeatureName" id="name">
+                            </div>
+                           </div>
+                        <div class="card-action">
+                            <button class="btn btn-success">Təsdiq Et</button>
+                            <a href="@Url.Action("Index", "Feature")" class="btn btn-secondary">İmtina Et</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

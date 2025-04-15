@@ -1,0 +1,52 @@
+﻿@model UpdateTestimonialDto
+@{
+    ViewData["Title"] = "UpdateTestimonial";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Yorum əməliyyatları</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yorum Yeniləmə Səhifəsi</div>
+                        </div>
+                        <div class="card-body">
+                            <input type="hidden" asp-for="TestimonialId" />
+                            <div class="form-group">
+                                <label for="name">Ad Soyad</label>
+                                <input type="text" class="form-control" asp-for="Name" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Basliq</label>
+                                <input type="text" class="form-control" asp-for="Title" id="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Yorum</label>
+                                <input type="text" class="form-control" asp-for="Comment" id="comment">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Şəkil</label>
+                                <input type="text" class="form-control" asp-for="ImageUrl" id="image">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" asp-for="Status" id="status">
+                                    <label class="custom-control-label" for="status">Aktiv</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-success">Təsdiq Et</button>
+                            <a href="@Url.Action("Index", "Testimonial")" class="btn btn-secondary">İmtina Et</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
