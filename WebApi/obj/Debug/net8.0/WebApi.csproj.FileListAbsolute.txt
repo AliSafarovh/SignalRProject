@@ -162,3 +162,4 @@ C:\Users\samun\Desktop\SignalRProject\WebApi\bin\Debug\net8.0\DataAccess.pdb
 C:\Users\samun\Desktop\SignalRProject\WebApi\bin\Debug\net8.0\Entities.pdb
 C:\Users\samun\Desktop\SignalRProject\WebApi\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\samun\Desktop\SignalRProject\WebApi\bin\Debug\net8.0\AutoMapper.Contrib.Autofac.DependencyInjection.dll
+C:\Users\samun\Desktop\SignalRProject\WebApi\obj\Debug\net8.0\WebApi.sourcelink.json

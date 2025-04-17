@@ -2,6 +2,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Business.DependencyResolvers.Autofac;
 using Business.DependencyResolvers.Mappers;
+using WebApi.Hubs;
 
 namespace WebApi
 {
@@ -10,7 +11,17 @@ namespace WebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddCors(opt => 
+            { 
+                opt.AddPolicy("CorsPolicy",builder=>
+                {
+                    builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowCredentials(); 
+                });
+            });
+            builder.Services.AddSignalR();
             // Add services to the container.
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
             builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
@@ -34,13 +45,13 @@ namespace WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("CorsPolicy");    
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
             app.MapControllers();
-
+            app.MapHub<SignalRHub>("/signalrgub");
             app.Run();
         }
     }
